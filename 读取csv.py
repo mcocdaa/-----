@@ -260,7 +260,11 @@ def 多通道波形转单波形(Rec_Length,BoardID,Channel,Event_number,times,Ch
         del Rec_Length[i],BoardID[i],Channel[i],Event_number[i],times[i],Ch[i]
     return Rec_Length,BoardID,Channel,Event_number,times,Ch
 
-from . import 输出到文件
+import os
+current_path = os.getcwd()
+import sys
+sys.path.append(current_path)
+from 输出到文件 import savefile
 def 保存波形到文件(Rec_Length,BoardID,Channel,Event_number,times,Ch,
             基线,
             基线方差,
@@ -282,7 +286,7 @@ def 保存波形到文件(Rec_Length,BoardID,Channel,Event_number,times,Ch,
             击中区间后_evt.append(his[1])
         击中区间前.append(击中区间前_evt.copy())
         击中区间后.append(击中区间后_evt.copy())
-    输出到文件.savefile(savepath,
+    savefile(savepath,
                  {
                     'Rec_Length':Rec_Length,
                     'BoardID':BoardID,
@@ -364,6 +368,7 @@ if __name__=='__main__':
         title='Ch'+str(i)+'_wrong'+str(kwrong),
         xylabel=['time/'+str(dt)+'ns','V'],
         保存位置=波形显示保存位置+'Event'+str(i)+'.png')
+        print('Waveform',i,'wrong',kwrong)
 
     保存波形到文件(Rec_Length,BoardID,Channel,Event_number,times,Ch,
             基线,

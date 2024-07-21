@@ -78,7 +78,11 @@ def 读取TQ(path,filename):
     ChCount=ChCount[sorttime]
     return timeofQ,TQ_chargePE,ChCount
 
-from . import 输出到文件
+import os
+current_path = os.getcwd()
+import sys
+sys.path.append(current_path)
+from 输出到文件 import savefile
 
 if __name__=='__main__':
     savepath='./root保存/Event.root'
@@ -86,7 +90,7 @@ if __name__=='__main__':
     PMTID,PMTQT,PMTPE,Qhits,TQ_firsthitTime,fired_PMT,SumCharge,INDEXMAX\
         =TQ打包(timeofQ,ChCount,TQ_chargePE,TriW=64,TriN=1,EndW=-3500,EndN=2)
     
-    输出到文件.savefile(savepath,
+    savefile(savepath,
                  {
                     'ChID':PMTID,
                     'hittime':PMTQT,
