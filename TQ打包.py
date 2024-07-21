@@ -78,18 +78,15 @@ def 读取TQ(path,filename):
     ChCount=ChCount[sorttime]
     return timeofQ,TQ_chargePE,ChCount
 
-import sys
-sys.path.append('/home/csq/代码/工作/一般工作流/小工具/分类回归工具')
-sys.path.append('/home/csq/代码/工作')
-import 一般工作流.输出到文件 as 输出到文件
+from . import 输出到文件
 
 if __name__=='__main__':
-    TQrootpath='/home/csq/工作/宇宙线测量/wave0.root'
-    timeofQ,TQ_chargePE,ChCount=读取TQ('/home/csq/工作/宇宙线测量','wave0.root')
+    savepath='./root保存/Event.root'
+    timeofQ,TQ_chargePE,ChCount=读取TQ('./root保存/','waveform_TQ.root')
     PMTID,PMTQT,PMTPE,Qhits,TQ_firsthitTime,fired_PMT,SumCharge,INDEXMAX\
         =TQ打包(timeofQ,ChCount,TQ_chargePE,TriW=64,TriN=1,EndW=-3500,EndN=2)
     
-    输出到文件.savefile('/home/csq/工作/宇宙线测量/打包后数据/Event.root',
+    输出到文件.savefile(savepath,
                  {
                     'ChID':PMTID,
                     'hittime':PMTQT,

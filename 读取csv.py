@@ -260,10 +260,7 @@ def 多通道波形转单波形(Rec_Length,BoardID,Channel,Event_number,times,Ch
         del Rec_Length[i],BoardID[i],Channel[i],Event_number[i],times[i],Ch[i]
     return Rec_Length,BoardID,Channel,Event_number,times,Ch
 
-import sys
-sys.path.append('/home/csq/代码/工作/一般工作流/小工具/分类回归工具')
-sys.path.append('/home/csq/代码/工作')
-import 一般工作流.输出到文件 as 输出到文件
+from . import 输出到文件
 def 保存波形到文件(Rec_Length,BoardID,Channel,Event_number,times,Ch,
             基线,
             基线方差,
@@ -319,9 +316,9 @@ def 保存波形到文件(Rec_Length,BoardID,Channel,Event_number,times,Ch,
     pass
 
 if __name__=='__main__':
-    readpath='/home/csq/工作/宇宙线测量/数据位置/'
-    波形显示保存位置='/home/csq/工作/宇宙线测量/波形/'
-    root文件保存位置='/home/csq/工作/宇宙线测量/wave0.root'
+    readpath='./数据请放在这里/'
+    波形显示保存位置='./波形显示/'
+    root文件保存位置='./root保存/waveform_TQ.root'
     import os
     Rec_Length=[]
     BoardID=[]
